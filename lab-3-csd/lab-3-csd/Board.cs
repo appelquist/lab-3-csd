@@ -13,6 +13,16 @@ namespace lab_3_csd
             Coordinate = coordinate;
         }
 
+        public Board(int depth)
+        {
+            Cells = CreateBoards(depth):
+        }
+
+        public ICell CreateBoards(int depth)
+        {
+            return new Cell("");
+        }
+
         public void AddCell(ICell cell)
         {
             Cells.Add(cell);
