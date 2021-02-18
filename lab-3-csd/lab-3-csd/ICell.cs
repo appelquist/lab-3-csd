@@ -6,6 +6,8 @@ namespace lab_3_csd
 {
     interface ICell
     {
+        void MakeMove(string[] move);
+        void Clear();
         void PrintCellInfo();
     }
 }
