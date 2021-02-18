@@ -22,28 +22,25 @@ namespace lab_3_csd
         }
         public void AddCell(ICell cell)
         {
-            Cells.Add(cell);    }
-        public void GenerateEmptyBoard(int depth, int size)
+            Cells.Add(cell);
+        }
+        public void GenerateEmptyBoard(int depth)
         {
             string[] coordinates = new string[] { "NW", "NC", "NE", "CW", "CC", "CE", "SW", "SC", "SE" };
-            if (depth == 0)
-            {
-                return;
-            }
             if (depth == 1)
             {
-                for (int i = 0; i < size; i++)
+                for (int i = 0; i < coordinates.Length; i++)
                 {
                     Cell c = new Cell(coordinates[i]);
                     this.AddCell(c);                
                 }
                 return;
             }
-            for (int i = 0; i < size; i++)
+            for (int i = 0; i < 9; i++)
             {
                 Board b = new Board(coordinates[i]);
                 this.AddCell(b);
-                b.GenerateEmptyBoard(depth - 1,  size);
+                b.GenerateEmptyBoard(depth - 1);
             }
         }
 

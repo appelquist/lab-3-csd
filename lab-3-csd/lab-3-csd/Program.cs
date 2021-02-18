@@ -11,22 +11,22 @@ namespace lab_3_csd
             int depth;
             Board game = new Board("");
             string[] moves = args[0].Split(',');
-
             depth = moves[0].Count(ch => (ch == '.')) + 1;
-            game.GenerateEmptyBoard(depth, 9);
+
+            game.GenerateEmptyBoard(depth);
             game.PrintCellInfo();
 
-            string ChangePlayer(string player)
-            {
-                if (player == "O")
-                {
-                    return "X";
-                }
-                else
-                {
-                    return "O";
-                }
-            }
+            //string ChangePlayer(string player)
+            //{
+            //    if (player == "O")
+            //    {
+            //        return "X";
+            //    }
+            //    else
+            //    {
+            //        return "O";
+            //    }
+            //}
             return 0;
         }
     }
