@@ -28,7 +28,7 @@ namespace lab_3_csd
         public void GenerateEmptyBoard(int depth)
         {
             string[] coordinates = new string[] { "NW", "NC", "NE", "CW", "CC", "CE", "SW", "SC", "SE" };
-            if (depth == 1)
+            if (depth == 2)
             {
                 for (int i = 0; i < coordinates.Length; i++)
                 {
@@ -45,26 +45,25 @@ namespace lab_3_csd
                 b.GenerateEmptyBoard(depth - 1);
             }
         }
-
-        //public Board GenerateEmptyBoard(int depth, Board board)
+        //public void MakeMove(string[] moves)
         //{
-        //    string[] coordinates = new string[] { "NW", "NC", "NE", "CW", "CC", "CE", "SW", "SC", "SE" };
-        //    if (depth == 1)
+        //    if (moves.Length == 0)
         //    {
-        //        for (int i = 0; i < coordinates.Length; i++)
-        //        {
-        //            Cell c = new Cell(coordinates[i]);
-        //            this.AddCell(c);
-        //        }
-        //        return board;
+        //        return;
         //    }
-        //    for (int i = 0; i < 9; i++)
+        //    string[] move = moves[0].Split('.');
+        //    string player = move[move.Length - 1];
+        //    string coordinate = move[move.Length - 2];
+        //    foreach (ICell cell in Cells)
         //    {
-        //        Board b = new Board(coordinates[i]);
-        //        board.AddCell(b);
-        //        GenerateEmptyBoard(depth - 1, b);
+        //        moves = moves.Skip(1).ToArray();
+        //        MakeMove(moves);
         //    }
-        //    return board;
+        //    if (Coordinate == coordinate)
+        //    {
+        //        playerOccupying = player;
+        //    }
+            
         //}
 
         public void MakeMove(string[] moves)
@@ -73,19 +72,32 @@ namespace lab_3_csd
             {
                 return;
             }
-            string[] move = moves[0].Split('.');
-            string player = move[move.Length - 1];
-            string coordinate = move[move.Length - 2];
-            foreach (ICell cell in Cells)
+
+            string[] firstMove = moves[0].Split('.');
+            string player = firstMove[firstMove.Length - 1];
+            string coordinate = firstMove[0];
+            if (firstMove.Length == 2)
             {
-                moves = moves.Skip(1).ToArray();
-                MakeMove(moves);
+                foreach (ICell cell in Cells)
+                {
+                    cell.MakeMove(firstMove);
+                }
+                return;
             }
-            if (Coordinate == coordinate)
+
+
+            if (coordinate == Coordinate || Coordinate == "")
             {
-                playerOccupying = player;
+                firstMove = firstMove.Skip(1).ToArray();
+                string firstMoveString = String.Join(".", firstMove);
+                string[] firstMoveArr = new string[] { firstMoveString };
+                foreach (ICell cell in Cells)
+                {
+                    cell.MakeMove(firstMoveArr);
+                }
             }
-            
+            moves = moves.Skip(1).ToArray();
+            MakeMove(moves);
         }
         public void PrintCellInfo()
         {  

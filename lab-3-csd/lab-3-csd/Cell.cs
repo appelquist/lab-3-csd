@@ -22,12 +22,12 @@ namespace lab_3_csd
 
         public void MakeMove(string[] move)
         {
-            string player = move[move.Length - 1];
-            string coordinate = move[move.Length - 2];
-            playerOccupying = player;
+            string player = move[1];
+            string coordinate = move[0];
             if (Coordinate == coordinate)
             {
                 playerOccupying = player;
+                return;
             }
         }
 
