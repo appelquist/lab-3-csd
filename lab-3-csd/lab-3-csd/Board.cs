@@ -28,6 +28,7 @@ namespace lab_3_csd
         public void GenerateEmptyBoard(int depth)
         {
             string[] coordinates = new string[] { "NW", "NC", "NE", "CW", "CC", "CE", "SW", "SC", "SE" };
+            //Base case - if one layer above bottom, fill out bottom layer with leafs(Cell)
             if (depth == 2)
             {
                 for (int i = 0; i < coordinates.Length; i++)
@@ -37,6 +38,7 @@ namespace lab_3_csd
                 }
                 return;
             }
+            //Else - Create boards and Genererate boards for those boards
             for (int i = 0; i < coordinates.Length; i++)
             {
                 Board b = new Board(coordinates[i]);
@@ -45,57 +47,37 @@ namespace lab_3_csd
                 b.GenerateEmptyBoard(depth - 1);
             }
         }
-        //public void MakeMove(string[] moves)
-        //{
-        //    if (moves.Length == 0)
-        //    {
-        //        return;
-        //    }
-        //    string[] move = moves[0].Split('.');
-        //    string player = move[move.Length - 1];
-        //    string coordinate = move[move.Length - 2];
-        //    foreach (ICell cell in Cells)
-        //    {
-        //        moves = moves.Skip(1).ToArray();
-        //        MakeMove(moves);
-        //    }
-        //    if (Coordinate == coordinate)
-        //    {
-        //        playerOccupying = player;
-        //    }
-            
-        //}
-
         public void MakeMove(string[] moves)
         {
+            //Base case - if all moves have been gone through, return
             if (moves.Length == 0)
             {
                 return;
             }
 
             string[] firstMove = moves[0].Split('.');
-            string player = firstMove[firstMove.Length - 1];
             string coordinate = firstMove[0];
-            if (firstMove.Length == 2)
+            
+            //Special case - Fill out each cell under root with the moves.
+            if (Coordinate == "root")
             {
+                foreach (ICell cell in Cells)
+                {
+                    cell.MakeMove(moves);
+                }
+            }
+
+            //If not root, check if this cell hase the same coordinate as the move, if so: remove the first coordinate of the move
+            //(NW.CC.X -> CC.X), and for each children of this cell, try to place that move.
+            if (coordinate == Coordinate)
+            {
+                firstMove = firstMove.Skip(1).ToArray();
                 foreach (ICell cell in Cells)
                 {
                     cell.MakeMove(firstMove);
                 }
-                return;
             }
-
-
-            if (coordinate == Coordinate || Coordinate == "")
-            {
-                firstMove = firstMove.Skip(1).ToArray();
-                string firstMoveString = String.Join(".", firstMove);
-                string[] firstMoveArr = new string[] { firstMoveString };
-                foreach (ICell cell in Cells)
-                {
-                    cell.MakeMove(firstMoveArr);
-                }
-            }
+            //Remove firstMove from moves and continue
             moves = moves.Skip(1).ToArray();
             MakeMove(moves);
         }

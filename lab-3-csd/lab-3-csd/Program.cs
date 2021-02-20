@@ -9,7 +9,7 @@ namespace lab_3_csd
         static int Main(string[] args)
         {
             int depth;
-            Board game = new Board("");
+            Board game = new Board("root");
             string[] moves = args[0].Split(',');
             for (int i = 0; i < moves.Length; i++)
             {
