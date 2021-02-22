@@ -82,10 +82,12 @@ namespace lab_3_csd
             MakeMove(moves);
         }
 
-        public void SetWinners(Board board, string[,] winningPatterns)
+        public void SetWinners(Board board, List<string[]> winningPatterns)
         {
+            //Base case - if the first cell is of Type Cell calculate that boards winner and return
             if (board.Cells.First().GetType().Equals(typeof(Cell)))
             {
+                //Get the X and O player moves
                 List<string> xMoves = new List<string>();
                 List<string> oMoves = new List<string>();
                 foreach (Cell cell in board.Cells)
@@ -100,7 +102,8 @@ namespace lab_3_csd
                     }
                 }
 
-                foreach (string pattern in winningPatterns)
+                //Check if the moves  for bothe players contain any of the winning patterns
+                foreach (string[] pattern in winningPatterns)
                 {
                     if (xMoves.Contains(pattern[0].ToString()) && xMoves.Contains(pattern[1].ToString()) && xMoves.Contains(pattern[2].ToString()))
                     {
@@ -114,38 +117,49 @@ namespace lab_3_csd
                     }
                 }
                 return;
-            }
+            }      
 
-            
+            //Set winner of each board and of its children
             foreach (Board b in board.Cells)
             {
-                List<string> xWins = new List<string>();
-                List<string> oWins = new List<string>();
-                
-                foreach(ICell bd in b.Cells)
-                {
-                    if (bd.GetWinningPlayer() == "X")
-                    {
-                        xWins.Add(bd.GetCoordinate());
-                    }
-                    else if (bd.GetWinningPlayer() == "O")
-                    {
-                        oWins.Add(bd.GetCoordinate());
-                    }
-                }
-
-                foreach (string pattern in winningPatterns)
-                {
-                    if (xWins.Contains(pattern[0].ToString()) && xWins.Contains(pattern[1].ToString()) && xWins.Contains(pattern[2].ToString()))
-                    {
-                        b.WinningPlayer = "X";
-                    }
-                    else if (oWins.Contains(pattern[0].ToString()) && oWins.Contains(pattern[1].ToString()) && oWins.Contains(pattern[2].ToString()))
-                    {
-                        b.WinningPlayer = "O";
-                    }
-                }
+                SetWinnerSelf(b, winningPatterns);
+                //Recursive step
                 SetWinners(b, winningPatterns);
+            }
+
+            //Special case, set winner of the root board aka the winner of the game.
+            if (board.Coordinate == "root")
+            {
+                SetWinnerSelf(board, winningPatterns);
+            }
+        }
+
+        private void SetWinnerSelf(Board board, List<string[]> winningPatterns)
+        {
+            List<string> xWins = new List<string>();
+            List<string> oWins = new List<string>();
+            foreach (ICell bd in board.Cells)
+            {
+                if (bd.GetWinningPlayer() == "X")
+                {
+                    xWins.Add(bd.GetCoordinate());
+                }
+                else if (bd.GetWinningPlayer() == "O")
+                {
+                    oWins.Add(bd.GetCoordinate());
+                }
+            }
+
+            foreach (string[] pattern in winningPatterns)
+            {
+                if (xWins.Contains(pattern[0].ToString()) && xWins.Contains(pattern[1].ToString()) && xWins.Contains(pattern[2].ToString()))
+                {
+                    board.WinningPlayer = "X";
+                }
+                else if (oWins.Contains(pattern[0].ToString()) && oWins.Contains(pattern[1].ToString()) && oWins.Contains(pattern[2].ToString()))
+                {
+                    board.WinningPlayer = "O";
+                }
             }
         }
         public void PrintCellInfo()
