@@ -10,6 +10,7 @@ namespace lab_3_csd
         public string Coordinate { get; private set; }
         public string WinningPlayer { get; private set; }
         private List<ICell> Cells = new List<ICell>();
+        private List<string[]> WinningMoves = new List<string[]>();
         public Board(string coordinate)
         {
             Coordinate = coordinate;
@@ -161,6 +162,11 @@ namespace lab_3_csd
                     board.WinningPlayer = "O";
                 }
             }
+        }
+
+        private void SetWinningMoves(string[] moves)
+        {
+
         }
         public void PrintCellInfo()
         {  
