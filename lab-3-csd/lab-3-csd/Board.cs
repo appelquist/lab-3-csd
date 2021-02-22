@@ -8,7 +8,7 @@ namespace lab_3_csd
     class Board : ICell
     {
         public string Coordinate { get; private set; }
-        public string playerOccupying { get; private set; }
+        public string WinningPlayer { get; private set; }
         private List<ICell> Cells = new List<ICell>();
         public Board(string coordinate)
         {
@@ -81,6 +81,73 @@ namespace lab_3_csd
             moves = moves.Skip(1).ToArray();
             MakeMove(moves);
         }
+
+        public void SetWinners(Board board, string[,] winningPatterns)
+        {
+            if (board.Cells.First().GetType().Equals(typeof(Cell)))
+            {
+                List<string> xMoves = new List<string>();
+                List<string> oMoves = new List<string>();
+                foreach (Cell cell in board.Cells)
+                {
+                    if (cell.PlayerOccupying == "X")
+                    {
+                        xMoves.Add(cell.Coordinate);
+                    }
+                    else if(cell.Coordinate == "O")
+                    {
+                        oMoves.Add(cell.Coordinate);
+                    }
+                }
+
+                foreach (string pattern in winningPatterns)
+                {
+                    if (xMoves.Contains(pattern[0].ToString()) && xMoves.Contains(pattern[1].ToString()) && xMoves.Contains(pattern[2].ToString()))
+                    {
+                        board.WinningPlayer = "X";
+                        return;
+                    }
+                    else if (oMoves.Contains(pattern[0].ToString()) && oMoves.Contains(pattern[1].ToString()) && oMoves.Contains(pattern[2].ToString()))
+                    {
+                        board.WinningPlayer = "O";
+                        return;
+                    }
+                }
+                return;
+            }
+
+            
+            foreach (Board b in board.Cells)
+            {
+                List<string> xWins = new List<string>();
+                List<string> oWins = new List<string>();
+                
+                foreach(ICell bd in b.Cells)
+                {
+                    if (bd.GetWinningPlayer() == "X")
+                    {
+                        xWins.Add(bd.GetCoordinate());
+                    }
+                    else if (bd.GetWinningPlayer() == "O")
+                    {
+                        oWins.Add(bd.GetCoordinate());
+                    }
+                }
+
+                foreach (string pattern in winningPatterns)
+                {
+                    if (xWins.Contains(pattern[0].ToString()) && xWins.Contains(pattern[1].ToString()) && xWins.Contains(pattern[2].ToString()))
+                    {
+                        b.WinningPlayer = "X";
+                    }
+                    else if (oWins.Contains(pattern[0].ToString()) && oWins.Contains(pattern[1].ToString()) && oWins.Contains(pattern[2].ToString()))
+                    {
+                        b.WinningPlayer = "O";
+                    }
+                }
+                SetWinners(b, winningPatterns);
+            }
+        }
         public void PrintCellInfo()
         {  
             foreach (ICell cell in Cells)
@@ -91,7 +158,16 @@ namespace lab_3_csd
         }
         public void Clear()
         {
-            playerOccupying = "";
+            WinningPlayer = "";
+        }
+        public string GetWinningPlayer()
+        {
+            return WinningPlayer;
+        }
+
+        public string GetCoordinate()
+        {
+            return Coordinate;
         }
     }
 }

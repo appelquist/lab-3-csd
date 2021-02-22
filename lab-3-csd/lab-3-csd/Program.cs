@@ -8,6 +8,7 @@ namespace lab_3_csd
     {
         static int Main(string[] args)
         {
+            string[,] winningPatterns = new string[,] { { "NW", "NC", "NE" }, { "CW", "CC", "CE" }, { "SW","SC","SE" }, { "NW", "CW", "SW" }, { "NC", "CC", "SC" }, { "NE", "CE", "SE" }, { "NW", "CC", "SE" }, { "SW", "CC", "NE" } };
             int depth;
             Board game = new Board("root");
             string[] moves = args[0].Split(',');
@@ -28,6 +29,7 @@ namespace lab_3_csd
 
             game.GenerateEmptyBoard(depth);
             game.MakeMove(moves);
+            game.SetWinners(game, winningPatterns);
             game.PrintCellInfo();
             return 0;
         }

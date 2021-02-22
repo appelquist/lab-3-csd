@@ -9,5 +9,7 @@ namespace lab_3_csd
         void MakeMove(string[] move);
         void Clear();
         void PrintCellInfo();
+        string GetWinningPlayer();
+        string GetCoordinate();
     }
 }

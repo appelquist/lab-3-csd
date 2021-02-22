@@ -7,7 +7,7 @@ namespace lab_3_csd
     class Cell : ICell
     {
         public string Coordinate { get; private set; }
-        public string playerOccupying { get; private set; }
+        public string PlayerOccupying { get; private set; }
 
         public Cell(string coordinate)
         {
@@ -17,7 +17,7 @@ namespace lab_3_csd
         public void PrintCellInfo()
         {
             Console.WriteLine(Coordinate);
-            Console.WriteLine(playerOccupying);
+            Console.WriteLine(PlayerOccupying);
         }
 
         public void MakeMove(string[] move)
@@ -26,14 +26,24 @@ namespace lab_3_csd
             string coordinate = move[0];
             if (Coordinate == coordinate)
             {
-                playerOccupying = player;
+                PlayerOccupying = player;
                 return;
             }
         }
 
         public void Clear()
         {
-            playerOccupying = "";
+            PlayerOccupying = "";
+        }
+
+        public string GetWinningPlayer()
+        {
+            return PlayerOccupying;
+        }
+
+        public string GetCoordinate()
+        {
+            return Coordinate;
         }
     }
 }
