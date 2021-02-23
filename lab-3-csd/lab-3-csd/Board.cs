@@ -232,10 +232,32 @@ namespace lab_3_csd
                     }
                 }
             }
+
+            SetWinningMovesSelf(winningMoves);
+
+            foreach (ICell board in Cells)
+            {
+                List<string> nextMoves = new List<string>();
+                for (int i = 0; i < moves.Count; i++)
+                {
+                    string moveCoordinate = moves.ElementAt(i).Remove(2, moves.ElementAt(i).Length - 2);
+                    if (board.GetCoordinate() == moveCoordinate)
+                    {
+                        string nextMove = moves[i].Remove(0, 3);
+                        nextMoves.Add(nextMove);
+                    }
+                    
+                }
+                board.SetWinningMoves(nextMoves);
+            }
+        }
+
+        private void SetWinningMovesSelf(List<string> winningMoves)
+        {
             int nw = 0; int nc = 0; int ne = 0; int cw = 0; int cc = 0; int ce = 0; int sw = 0; int sc = 0; int se = 0;
             foreach (string move in winningMoves)
             {
-                switch(move)
+                switch (move)
                 {
                     case "NW":
                         nw++;
@@ -274,21 +296,6 @@ namespace lab_3_csd
                         if (se == 3) { WinningMoves.Add(move); }
                         break;
                 }
-            }
-            foreach (ICell board in Cells)
-            {
-                List<string> nextMoves = new List<string>();
-                for (int i = 0; i < moves.Count; i++)
-                {
-                    string moveCoordinate = moves.ElementAt(i).Remove(2, moves.ElementAt(i).Length - 2);
-                    if (board.GetCoordinate() == moveCoordinate)
-                    {
-                        string nextMove = moves[i].Remove(0, 3);
-                        nextMoves.Add(nextMove);
-                    }
-                    
-                }
-                board.SetWinningMoves(nextMoves);
             }
         }
 
