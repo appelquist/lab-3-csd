@@ -45,5 +45,10 @@ namespace lab_3_csd
         {
             return Coordinate;
         }
+
+        public void SetWinningMoves(List<string> moves)
+        {
+            return;
+        }
     }
 }

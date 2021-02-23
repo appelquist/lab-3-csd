@@ -12,14 +12,17 @@ namespace lab_3_csd
             int depth;
             Board game = new Board("root");
             string[] moves = args[0].Split(',');
+            List<string> Moves = new List<string>();
             for (int i = 0; i < moves.Length; i++)
             {
                 if (i % 2 == 0)
                 {
-                    moves[i] = moves[i] + ".X";
+                    Moves.Add(moves[i] + ".X");
+                    moves[i] = moves[i] + ".X";                  
                 }
                 else
                 {
+                    Moves.Add(moves[i] + ".O");
                     moves[i] = moves[i] + ".O";
                 }
             }
@@ -29,6 +32,7 @@ namespace lab_3_csd
             game.GenerateEmptyBoard(depth);
             game.MakeMove(moves);
             game.SetWinners(game, winningPatterns);
+            game.SetWinningMoves(Moves);
             game.PrintCellInfo();
             return 0;
         }
