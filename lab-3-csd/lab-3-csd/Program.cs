@@ -30,7 +30,7 @@ namespace lab_3_csd
             depth = moves[0].Count(ch => (ch == '.')) + 1;
 
             game.GenerateEmptyBoard(depth);
-            game.MakeMove(moves);
+            game.MakeMove(Moves);
             game.SetWinners(game, winningPatterns);
             game.SetWinningMoves(Moves);
             game.PrintCellInfo();

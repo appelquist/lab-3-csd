@@ -48,17 +48,51 @@ namespace lab_3_csd
                 b.GenerateEmptyBoard(depth - 1);
             }
         }
-        public void MakeMove(string[] moves)
+        //public void MakeMove(List<string> moves)
+        //{
+        //    //Base case - if all moves have been gone through, return
+        //    if (moves.Count == 0)
+        //    {
+        //        return;
+        //    }
+
+        //    List<string> firstMove = new List<string>() { moves.First() };
+        //    string coordinate = firstMove.First().Remove(2);
+
+        //    //Special case - Fill out each cell under root with the moves.
+        //    if (Coordinate == "root")
+        //    {
+        //        foreach (ICell cell in Cells)
+        //        {
+        //            cell.MakeMove(moves);
+        //        }
+        //    }
+
+        //    //If not root, check if this cell hase the same coordinate as the move, if so: remove the first coordinate of the move
+        //    //(NW.CC.X -> CC.X), and for each children of this cell, try to place that move.
+        //    if (coordinate == Coordinate)
+        //    {
+        //        firstMove[0] = firstMove.First().Remove(0, 3);
+        //        foreach (ICell cell in Cells)
+        //        {
+        //            cell.MakeMove(firstMove);
+        //        }
+        //    }
+        //    //Remove firstMove from moves and continue
+        //    moves.RemoveAt(0);
+        //    MakeMove(moves);
+        //}
+        public void MakeMove(List<string> moves)
         {
             //Base case - if all moves have been gone through, return
-            if (moves.Length == 0)
+            if (moves.Count == 0)
             {
                 return;
             }
 
-            string[] firstMove = moves[0].Split('.');
-            string coordinate = firstMove[0];
-            
+            List<string> firstMove = new List<string>() { moves.First() };
+            string coordinate = firstMove.First().Remove(2);
+
             //Special case - Fill out each cell under root with the moves.
             if (Coordinate == "root")
             {
@@ -68,19 +102,18 @@ namespace lab_3_csd
                 }
             }
 
-            //If not root, check if this cell hase the same coordinate as the move, if so: remove the first coordinate of the move
-            //(NW.CC.X -> CC.X), and for each children of this cell, try to place that move.
-            if (coordinate == Coordinate)
+            //If not root, check if this cell hase the same coordinate as the move, if so: call MakeMove on all its cells with the list of moves;
+            if (Coordinate == coordinate)
             {
-                firstMove = firstMove.Skip(1).ToArray();
                 foreach (ICell cell in Cells)
-                {
-                    cell.MakeMove(firstMove);
+                {               
+                    cell.MakeMove(moves);
                 }
             }
             //Remove firstMove from moves and continue
-            moves = moves.Skip(1).ToArray();
-            MakeMove(moves);
+            List<string> tail = moves.ToList();
+            tail.RemoveAt(0);
+            MakeMove(tail);
         }
 
         public void SetWinners(Board board, List<string[]> winningPatterns)
