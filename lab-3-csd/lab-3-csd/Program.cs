@@ -17,23 +17,21 @@ namespace lab_3_csd
             {
                 if (i % 2 == 0)
                 {
-                    Moves.Add(moves[i] + ".X");
-                    moves[i] = moves[i] + ".X";                  
+                    Moves.Add(moves[i] + ".X");              
                 }
                 else
                 {
                     Moves.Add(moves[i] + ".O");
-                    moves[i] = moves[i] + ".O";
                 }
             }
             
-            depth = moves[0].Count(ch => (ch == '.')) + 1;
+            depth = Moves[0].Count(ch => (ch == '.')) + 1;
 
-            game.GenerateEmptyBoard(depth);
-            game.MakeMove(Moves);
-            game.SetWinners(game, winningPatterns);
-            game.SetWinningMoves(Moves);
-            game.PrintCellInfo();
+            Builder BoardBuilder = new Builder();
+            Director BoardDirector = new Director(BoardBuilder);
+
+            BoardDirector.ConstructBoard(moves, depth);
+
             return 0;
         }
     }

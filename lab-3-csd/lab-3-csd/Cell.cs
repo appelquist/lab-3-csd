@@ -53,5 +53,9 @@ namespace lab_3_csd
         {
             return;
         }
+        public List<ICell> GetCells()
+        {
+            return new List<ICell>() { this };
+        }
     }
 }

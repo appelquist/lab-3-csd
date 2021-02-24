@@ -8,6 +8,7 @@ namespace lab_3_csd
     {
         void MakeMove(List<string> move);
         void SetWinningMoves(List<string> moves);
+        List<ICell> GetCells();
         void Clear();
         void PrintCellInfo();
         string GetWinningPlayer();
