@@ -36,7 +36,7 @@ namespace lab_3_csd
         public void GenerateEmptyBoard(int depth)
         {
             //Base case - if one layer above bottom, fill out bottom layer with leafs(Cell)
-            if (depth == 2)
+            if (depth == 1)
             {
                 for (int i = 0; i < Board.Coordinates.Length; i++)
                 {
@@ -156,6 +156,7 @@ namespace lab_3_csd
         }
         private void SetWinnerSelf(Board board)
         {
+            //Save all winning moves for both players
             List<string> xWins = new List<string>();
             List<string> oWins = new List<string>();
             foreach (ICell bd in board.Cells)
@@ -183,12 +184,14 @@ namespace lab_3_csd
             }
         }
 
+        //TODO: This function does not work if the first board is of depth 1.
         public void SetWinningMoves(Board board, List<string> moves)
         {
             if (moves.Count == 0)
             {
                 return;
             }
+            //If the length of a move is 4 (NW.X), add the moves (NW) to the boards WinningMoves
             if (moves.ElementAt(0).Length == 4)
             {
                 foreach (string move in moves)
@@ -197,6 +200,7 @@ namespace lab_3_csd
                 }
                 return;
             }
+            //If the board was won by X, save all X moves, if O won, save all O moves.
             List<string> winningMoves = new List<string>();
             if (board.WinningPlayer == "X")
             {
@@ -219,8 +223,10 @@ namespace lab_3_csd
                 }
             }
 
+            //Set this boards WinningMoves in order based on winningMoves.
             board.SetWinningMoves(winningMoves);
 
+            //For each board in this boards Cells remove the outermost part of all moves and call SetWinningMoves with that board and those moves
             foreach (Board b in board.Cells)
             {
                 List<string> nextMoves = new List<string>();
