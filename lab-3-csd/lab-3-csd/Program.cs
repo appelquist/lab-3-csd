@@ -16,7 +16,7 @@ namespace lab_3_csd
             Director BoardDirector = new Director(BoardBuilder);
 
             BoardDirector.ConstructBoard(moves, depth);
-
+            Board game = BoardBuilder.GetBoard();
             return 0;
         }
     }

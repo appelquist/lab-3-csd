@@ -18,9 +18,9 @@ namespace lab_3_csd
             Builder.SetMoves(moves);
             Builder.SetCoordinate("root");
             Builder.GenerateEmptyBoard(depth);
-            Builder.MakeMoves(Builder.Board, Builder.Board.Moves);
-            Builder.SetWinners(Builder.Board);
-            Builder.SetWinningMoves(Builder.Board, Builder.Board.Moves);
+            Builder.MakeMoves(Builder.GetBoard(), Builder.GetBoard().Moves);
+            Builder.SetWinners(Builder.GetBoard());
+            Builder.SetWinningMoves(Builder.GetBoard(), Builder.GetBoard().Moves);
         }
     }
 }

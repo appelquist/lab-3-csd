@@ -7,7 +7,7 @@ namespace lab_3_csd
 {
     class Builder : IBuilder
     {
-        public Board Board { get; private set; }
+        private Board Board;
         public Builder()
         {
             Reset();
@@ -171,6 +171,7 @@ namespace lab_3_csd
                 }
             }
 
+            //Check any winning pattern exists in xWins or oWins, if so set player to winner.
             foreach (string[] pattern in board.WinningPatterns)
             {
                 if (xWins.Contains(pattern[0].ToString()) && xWins.Contains(pattern[1].ToString()) && xWins.Contains(pattern[2].ToString()))
@@ -241,6 +242,10 @@ namespace lab_3_csd
                 }
                 SetWinningMoves(b,nextMoves);
             }
+        }
+        public Board GetBoard()
+        {
+            return Board;
         }
     }
 }
