@@ -13,6 +13,6 @@ namespace lab_3_csd
         void GenerateEmptyBoard(int depth);
         void MakeMoves(ICell cell, List<string> moves);
         void SetWinners(Board board);
-        void SetWinningMoves(Board board, List<string> moves);
+        void SetWinningCells(Board board, List<string> moves);
     }
 }

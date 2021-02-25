@@ -186,7 +186,7 @@ namespace lab_3_csd
         }
 
         //TODO: This function does not work if the first board is of depth 1.
-        public void SetWinningMoves(Board board, List<string> moves)
+        public void SetWinningCells(Board board, List<string> moves)
         {
             if (moves.Count == 0)
             {
@@ -197,7 +197,7 @@ namespace lab_3_csd
             {
                 foreach (string move in moves)
                 {
-                    board.AddWinningMove(move.Remove(2, 2));
+                    board.AddWinningCell(move.Remove(2, 2));
                 }
                 return;
             }
@@ -225,7 +225,7 @@ namespace lab_3_csd
             }
 
             //Set this boards WinningMoves in order based on winningMoves.
-            board.SetWinningMoves(winningMoves);
+            board.SetWinningCells(winningMoves);
 
             //For each board in this boards Cells remove the outermost part of all moves and call SetWinningMoves with that board and those moves
             foreach (Board b in board.Cells)
@@ -240,7 +240,26 @@ namespace lab_3_csd
                         nextMoves.Add(nextMove);
                     }
                 }
-                SetWinningMoves(b,nextMoves);
+                SetWinningCells(b,nextMoves);
+            }
+        }
+        public void SetWinningMoves(Board board)
+        {
+            if (board.GetCells().First().GetType().Equals(typeof(Cell)))
+            {
+                foreach (string cell in board.GetWinningCells())
+                {
+                    board.AddWinningMove(board.Coordinate + "." + cell);
+                }
+                return;
+            }
+            foreach (string cell in board.GetWinningCells())
+            {
+                board.AddWinningMove(board.Coordinate + "." + cell);
+            }
+            foreach (Board b in board.Cells)
+            {
+                SetWinningMoves(b);
             }
         }
         public Board GetBoard()

@@ -20,7 +20,8 @@ namespace lab_3_csd
             Builder.GenerateEmptyBoard(depth);
             Builder.MakeMoves(Builder.GetBoard(), Builder.GetBoard().Moves);
             Builder.SetWinners(Builder.GetBoard());
-            Builder.SetWinningMoves(Builder.GetBoard(), Builder.GetBoard().Moves);
+            Builder.SetWinningCells(Builder.GetBoard(), Builder.GetBoard().Moves);
+            Builder.SetWinningMoves(Builder.GetBoard());
         }
     }
 }

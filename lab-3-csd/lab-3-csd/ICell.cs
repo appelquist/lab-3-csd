@@ -7,7 +7,7 @@ namespace lab_3_csd
     interface ICell
     {
         void MakeMove(List<string> move);
-        void SetWinningMoves(List<string> moves);
+        void SetWinningCells(List<string> moves);
         List<ICell> GetCells();
         void Clear();
         void PrintCellInfo();
