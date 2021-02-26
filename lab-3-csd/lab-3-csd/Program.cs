@@ -8,15 +8,27 @@ namespace lab_3_csd
     {
         static int Main(string[] args)
         {
+            List<string> Moves = new List<string>();
             string[] moves = args[0].Split(',');
-            
-            int depth = moves[0].Count(ch => (ch == '.')) + 1;
+            for (int i = 0; i < moves.Length; i++)
+            {
+                if (i % 2 == 0)
+                {
+                    Moves.Add(moves[i] + ".X");
+                }
+                else
+                {
+                    Moves.Add(moves[i] + ".O");
+                }
+            }
+
+            int depth = moves[0].Count(ch => (ch == '.'));
 
             Builder BoardBuilder = new Builder();
             Director BoardDirector = new Director(BoardBuilder);
 
-            BoardDirector.ConstructBoard(moves, depth);
-            Board game = BoardBuilder.GetBoard();
+            BoardDirector.ConstructBoard(Moves, depth);
+            //SuperBoard game = BoardBuilder.GetBoard();
             return 0;
         }
     }

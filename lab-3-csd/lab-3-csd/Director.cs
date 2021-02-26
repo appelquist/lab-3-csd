@@ -13,15 +13,14 @@ namespace lab_3_csd
             Builder = builder;
         }
 
-        public void ConstructBoard(string [] moves, int depth)
+        public void ConstructBoard(List<string> moves, int depth)
         {
-            Builder.SetMoves(moves);
             Builder.SetCoordinate("root");
             Builder.GenerateEmptyBoard(depth);
-            Builder.MakeMoves(Builder.GetBoard(), Builder.GetBoard().Moves);
-            Builder.SetWinners(Builder.GetBoard());
-            Builder.SetWinningCells(Builder.GetBoard(), Builder.GetBoard().Moves);
-            Builder.SetWinningMoves(Builder.GetBoard());
+            Builder.MakeMoves(moves);
+            //Builder.SetWinners(Builder.GetBoard());
+            //Builder.SetWinningCells(Builder.GetBoard(), Builder.GetBoard().Moves);
+            //Builder.SetWinningMoves(Builder.GetBoard());
         }
     }
 }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace lab_3_csd
 {
-    class Cell : ICell
+    class Cell
     {
         public string Coordinate { get; private set; }
         public string PlayerOccupying { get; private set; }
@@ -24,9 +24,9 @@ namespace lab_3_csd
         {
             string move = moves[0];
             string player = move.Remove(0, move.Length - 1);
-            move = move.Remove(move.Length - 2,2);
+            move = move.Remove(move.Length - 2, 2);
             string coordinate = move.Remove(0, move.Length - 2);
-            
+
             if (Coordinate == coordinate)
             {
                 PlayerOccupying = player;
@@ -47,15 +47,6 @@ namespace lab_3_csd
         public string GetCoordinate()
         {
             return Coordinate;
-        }
-
-        public void SetWinningCells(List<string> moves)
-        {
-            return;
-        }
-        public List<ICell> GetCells()
-        {
-            return new List<ICell>() { this };
         }
     }
 }
