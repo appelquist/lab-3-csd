@@ -11,14 +11,7 @@ namespace lab_3_csd
         public string WinningPlayer { get; private set; }
         public List<IBoard> Boards { get; private set; } = new List<IBoard>();
         private List<string> WinningCells = new List<string>();
-        private List<string> WinningMoves = new List<string>();
-        public List<string> Moves { get; private set; } = new List<string>();
-        public int Depth { get; private set; }
-        public string[] Coordinates { get; private set; } = new string[] { "NW", "NC", "NE", "CW", "CC", "CE", "SW", "SC", "SE" };
-        public List<string[]> WinningPatterns { get; private set; } = new List<string[]>() { new string[] { "NW", "NC", "NE" }, new string[] { "CW", "CC", "CE" },
-                                                                                             new string[] { "SW", "SC", "SE" }, new string[] { "NW", "CW", "SW" },
-                                                                                             new string[] { "NC", "CC", "SC" }, new string[] { "NE", "CE", "SE" },
-                                                                                             new string[] { "NW", "CC", "SE" }, new string[] { "SW", "CC", "NE" } };
+
         public SuperBoard(string coordinate)
         {
             Coordinate = coordinate;
@@ -36,10 +29,6 @@ namespace lab_3_csd
                     board.MakeMoves(moves);
                 }
             } 
-        }
-        public void SetDepth(int depth)
-        {
-            Depth = depth;
         }
         public void SetCoordinate(string coordinate)
         {
@@ -64,10 +53,6 @@ namespace lab_3_csd
         public void AddWinningCell(string cell)
         {
             WinningCells.Add(cell);
-        }
-        public void AddWinningMove(string move)
-        {
-            WinningMoves.Add(move);
         }
         public void SetWinningCells(List<string> winningMoves)
         {
@@ -115,33 +100,13 @@ namespace lab_3_csd
                 }
             }
         }
-        //public void PrintResult()
-        //{
-        //    string winningLargeCells = WinningCells[0] + ", " + WinningCells[1] + ", " + WinningCells[2];
-        //    Console.WriteLine(winningLargeCells);
-        //    List<string> winningMoves = WinningCells;
-        //    if (Cells.First().GetType().Equals(typeof(Board)))
-        //    {
-        //        foreach (IBoard cell in Cells)
-        //        {
-        //            if (cell.GetWinningPlayer() == WinningPlayer)
-        //            {
-        //                winningMoves.Add(cell.GetCoordinate());
-        //            }
-        //        }
-        //        return;
-        //    }
-        //    foreach (SuperBoard board in Cells)
-        //    {
-
-        //        if (board.GetWinningPlayer() == WinningPlayer)
-        //        {
-        //            winningMoves.Add(board.GetWinningMoves)
-        //        }
-
-        //    }
-
-        //}
+        public void PrintResult()
+        {
+            string winningLargeCells = WinningCells[0] + ", " + WinningCells[1] + ", " + WinningCells[2];
+            Console.WriteLine(winningLargeCells);
+            List<string> winningSmallCells = new List<string>();        
+            return;
+        }
 
         //public void PrintCellInfo()
         //{  
@@ -165,19 +130,43 @@ namespace lab_3_csd
             return Coordinate;
         }
 
-        public void MakeMove(List<string> move)
-        {
-            return;
-        }
-
-        public List<string> GetMoves()
-        {
-            return Moves;
-        }
-
         public void AddBoard(IBoard b)
         {
             Boards.Add(b);
+        }
+
+        public void SetWinners(List<string[]> winningPatterns)
+        {           
+            foreach (IBoard board in Boards)
+            {
+                board.SetWinners(winningPatterns);
+            }
+            List<string> xWins = new List<string>();
+            List<string> oWins = new List<string>();
+            foreach (IBoard b in Boards)
+            {
+                if (b.GetWinningPlayer() == "X")
+                {
+                    xWins.Add(b.GetCoordinate());
+                }
+                else if (b.GetWinningPlayer() == "O")
+                {
+                    oWins.Add(b.GetCoordinate());
+                }
+            }
+
+            //Check any winning pattern exists in xWins or oWins, if so set player to winner.
+            foreach (string[] pattern in winningPatterns)
+            {
+                if (xWins.Contains(pattern[0].ToString()) && xWins.Contains(pattern[1].ToString()) && xWins.Contains(pattern[2].ToString()))
+                {
+                    SetWinningPlayer("X");
+                }
+                else if (oWins.Contains(pattern[0].ToString()) && oWins.Contains(pattern[1].ToString()) && oWins.Contains(pattern[2].ToString()))
+                {
+                    SetWinningPlayer("O");
+                }
+            }
         }
     }
 }

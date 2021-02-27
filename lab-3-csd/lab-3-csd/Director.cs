@@ -6,6 +6,10 @@ namespace lab_3_csd
 {
     class Director
     {
+        private List<string[]> WinningPatterns = new List<string[]>() { new string[] { "NW", "NC", "NE" }, new string[] { "CW", "CC", "CE" },
+                                                                                             new string[] { "SW", "SC", "SE" }, new string[] { "NW", "CW", "SW" },
+                                                                                             new string[] { "NC", "CC", "SC" }, new string[] { "NE", "CE", "SE" },
+                                                                                             new string[] { "NW", "CC", "SE" }, new string[] { "SW", "CC", "NE" } };
         private Builder Builder;
 
         public Director(Builder builder)
@@ -18,8 +22,8 @@ namespace lab_3_csd
             Builder.SetCoordinate("root");
             Builder.GenerateEmptyBoard(depth);
             Builder.MakeMoves(moves);
-            //Builder.SetWinners(Builder.GetBoard());
-            //Builder.SetWinningCells(Builder.GetBoard(), Builder.GetBoard().Moves);
+            Builder.SetWinners(WinningPatterns);
+            Builder.SetWinningCells(Builder.GetBoard(), moves);
             //Builder.SetWinningMoves(Builder.GetBoard());
         }
     }

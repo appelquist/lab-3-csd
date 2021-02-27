@@ -11,5 +11,11 @@ namespace lab_3_csd
         string GetCoordinate();
         void MakeMoves(List<string> moves);
         List<IBoard> GetCells();
+        string GetWinningPlayer();
+        void SetWinningPlayer(string player);
+        void SetWinners(List<string[]> winningPatterns);
+        void AddWinningCell(string coordinate);
+        void SetWinningCells(List<string> winningMoves);
+        void PrintResult();
     }
 }
