@@ -100,22 +100,25 @@ namespace lab_3_csd
                 }
             }
         }
-        public void PrintResult()
+        public List<string> PrintResult(List<string> winningMoves)
         {
-            string winningLargeCells = WinningCells[0] + ", " + WinningCells[1] + ", " + WinningCells[2];
-            Console.WriteLine(winningLargeCells);
-            List<string> winningSmallCells = new List<string>();        
-            return;
+            List<string> result = new List<string>();
+            for (int i = 0; i < winningMoves.Count; i++)
+            {
+                foreach (IBoard board in GetCells())
+                {
+                    if (board.GetCoordinate() == winningMoves[i])
+                    {
+                        result.Add(winningMoves[i] + "." + board.GetWinningCells()[0]);
+                        result.Add(winningMoves[i] + "." + board.GetWinningCells()[1]);
+                        result.Add(winningMoves[i] + "." + board.GetWinningCells()[2]);
+                    }
+                }
+            }
+            Console.WriteLine(WinningCells[0] + ", " + WinningCells[1] + ", " + WinningCells[2]);
+            Console.WriteLine(result[0] + ", " + result[1] + ", " + result[2] + ", " + result[3] + ", " + result[4] + ", " + result[5] + ", " + result[6] + ", " + result[7] + ", " + result[8]);
+            return result;
         }
-
-        //public void PrintCellInfo()
-        //{  
-        //    foreach (IBoard cell in Cells)
-        //    {
-        //        Console.Write(Coordinate);
-        //        cell.PrintCellInfo();
-        //    }
-        //}
         public void Clear()
         {
             WinningPlayer = "";

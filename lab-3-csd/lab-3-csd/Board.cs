@@ -158,9 +158,25 @@ namespace lab_3_csd
             WinningCells.Add(coordinate);
         }
 
-        public void PrintResult()
+        public List<string> PrintResult(List<string> winningMoves)
         {
-            throw new NotImplementedException();
+            List<string> result = new List<string>();
+            for (int i = 0; i < winningMoves.Count; i++)
+            {
+                foreach (Cell cell in Cells)
+                {
+                    if (cell.GetCoordinate() == winningMoves[i])
+                    {
+                        result.Add(winningMoves[i] + "." + cell.GetCoordinate());
+                    }
+                }
+            }
+            return result;
+        }
+
+        public List<string> GetWinningCells()
+        {
+            return WinningCells;
         }
     }
 }
