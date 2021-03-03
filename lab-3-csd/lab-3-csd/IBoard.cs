@@ -9,7 +9,7 @@ namespace lab_3_csd
         void AddBoard(IBoard b);
         void SetCoordinate(string coordinate);
         string GetCoordinate();
-        void MakeMoves(List<string> moves);
+        void MakeMove(string move);
         List<IBoard> GetCells();
         string GetWinningPlayer();
         void SetWinningPlayer(string player);

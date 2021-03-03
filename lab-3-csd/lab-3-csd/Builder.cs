@@ -59,10 +59,10 @@ namespace lab_3_csd
             {
                 return;
             }
-
+            string move = moves.First();
             foreach (IBoard b in this.Board.GetCells())
             {
-                b.MakeMoves(moves);
+                b.MakeMove(move);
             }
 
             //Remove firstMove from moves and continue

@@ -20,14 +20,15 @@ namespace lab_3_csd
             Console.WriteLine(Coordinate);
         }
 
-        public void MakeMoves(List<string> moves)
+        public void MakeMove(string move)
         {
-            string coordinate = moves.First().Remove(2);
+            string coordinate = move.Remove(2, move.Length - 2);
+            move = move.Remove(0, 3);
             if (coordinate == this.Coordinate || "root" == this.Coordinate)
             {
                 foreach (Cell cell in Cells)
                 {
-                    cell.MakeMove(moves);
+                    cell.MakeMove(move);
                 }
             }
         }

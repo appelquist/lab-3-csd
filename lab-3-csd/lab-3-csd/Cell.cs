@@ -20,12 +20,10 @@ namespace lab_3_csd
             Console.WriteLine(PlayerOccupying);
         }
 
-        public void MakeMove(List<string> moves)
+        public void MakeMove(string move)
         {
-            string move = moves[0];
-            string player = move.Remove(0, move.Length - 1);
-            move = move.Remove(move.Length - 2, 2);
-            string coordinate = move.Remove(0, move.Length - 2);
+            string player = move.Remove(0, 3);
+            string coordinate = move.Remove(2, 2);
 
             if (Coordinate == coordinate)
             {

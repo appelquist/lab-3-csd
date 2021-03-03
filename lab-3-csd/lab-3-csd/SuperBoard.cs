@@ -19,14 +19,15 @@ namespace lab_3_csd
         public SuperBoard()
         {
         }
-        public void MakeMoves(List<string> moves)
+        public void MakeMove(string move)
         {
-            string coordinate = moves.First().Remove(2);
+            string coordinate = move.Remove(2, move.Length - 2);
+            move = move.Remove(0, 3);
             if (coordinate == this.Coordinate || "root" == this.Coordinate)
             {
                 foreach (IBoard board in Boards)
                 {
-                    board.MakeMoves(moves);
+                    board.MakeMove(move);
                 }
             } 
         }
@@ -112,11 +113,18 @@ namespace lab_3_csd
                         result.Add(winningMoves[i] + "." + board.GetWinningCells()[0]);
                         result.Add(winningMoves[i] + "." + board.GetWinningCells()[1]);
                         result.Add(winningMoves[i] + "." + board.GetWinningCells()[2]);
+                        
                     }
                 }
             }
-            Console.WriteLine(WinningCells[0] + ", " + WinningCells[1] + ", " + WinningCells[2]);
-            Console.WriteLine(result[0] + ", " + result[1] + ", " + result[2] + ", " + result[3] + ", " + result[4] + ", " + result[5] + ", " + result[6] + ", " + result[7] + ", " + result[8]);
+            if(WinningPlayer == null)
+            {
+                Console.WriteLine("No winner");
+            }
+            else
+            {
+                Console.WriteLine(WinningCells[0] + ", " + WinningCells[1] + ", " + WinningCells[2]);
+            }      
             return result;
         }
         public void Clear()
