@@ -98,34 +98,46 @@ namespace lab_3_csd
                         se++;
                         if (se == 3) { WinningCells.Add(move); }
                         break;
-                }
+                }               
+            }
+            List<string> test = WinningCells;
+            if (WinningCells.Count > 3)
+            {
+                Console.WriteLine("true");
             }
         }
-        public List<string> PrintResult(List<string> winningMoves)
+        public void PrintResult(List<string> winningMoves)
         {
             List<string> result = new List<string>();
             for (int i = 0; i < winningMoves.Count; i++)
             {
                 foreach (IBoard board in GetCells())
                 {
-                    if (board.GetCoordinate() == winningMoves[i])
+                    if (winningMoves[i].Length == 2)
                     {
-                        result.Add(winningMoves[i] + "." + board.GetWinningCells()[0]);
-                        result.Add(winningMoves[i] + "." + board.GetWinningCells()[1]);
-                        result.Add(winningMoves[i] + "." + board.GetWinningCells()[2]);
-                        
+                        if (board.GetCoordinate() == winningMoves[i])
+                        {
+                            for (int j = 0; j < board.GetWinningCells().Count; j++)
+                            {
+                                result.Add(winningMoves[i] + "." + board.GetWinningCells()[j]);
+                            }
+                            board.PrintResult(result);
+                        }
                     }
+                    else
+                    {
+                        if (board.GetCoordinate() == winningMoves[i].Remove(2))
+                        {
+                            for (int j = 0; j < board.GetWinningCells().Count; j++)
+                            {
+                                result.Add(winningMoves[i] + "." + board.GetWinningCells()[j]);
+                            }
+                            board.PrintResult(result);
+                        }
+                    }
+                   
                 }
-            }
-            if(WinningPlayer == null)
-            {
-                Console.WriteLine("No winner");
-            }
-            else
-            {
-                Console.WriteLine(WinningCells[0] + ", " + WinningCells[1] + ", " + WinningCells[2]);
-            }      
-            return result;
+            }   
         }
         public void Clear()
         {

@@ -116,10 +116,7 @@ namespace lab_3_csd
             //If the length of a move is 4 (NW.X), add the moves (NW) to the boards WinningCells
             if (moves.ElementAt(0).Length == 4)
             {
-                foreach (string move in moves)
-                {
-                    board.AddWinningCell(move.Remove(2, 2));
-                }
+                board.SetWinningCells(moves);
                 return;
             }
             //If the board was won by X, save all X moves, if O won, save all O moves.
@@ -128,7 +125,8 @@ namespace lab_3_csd
             {
                 for (int i = 0; i < moves.Count; i++)
                 {
-                    if (i % 2 == 0)
+                    string player = moves[i].Remove(0, moves[i].Length - 1);
+                    if (player == "X")
                     {
                         winningMoves.Add(moves[i].Split(".")[0]);
                     }
@@ -138,7 +136,8 @@ namespace lab_3_csd
             {
                 for (int i = 0; i < moves.Count; i++)
                 {
-                    if (i % 2 != 0)
+                    string player = moves[i].Remove(0, moves[i].Length - 1);
+                    if (player == "O")
                     {
                         winningMoves.Add(moves[i].Split(".")[0]);
                     }
