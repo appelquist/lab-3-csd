@@ -36,17 +36,6 @@ namespace lab_3_csd
                 }
             }
         }
-
-        //public void Clear()
-        //{
-        //    PlayerOccupying = "";
-        //}
-
-        //public string GetWinningPlayer()
-        //{
-        //    return PlayerOccupying;
-        //}
-
         public string GetCoordinate()
         {
             return Coordinate;

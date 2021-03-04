@@ -111,7 +111,7 @@ namespace lab_3_csd
             List<string> result = new List<string>();
             for (int i = 0; i < winningMoves.Count; i++)
             {
-                foreach (IBoard board in GetCells())
+                foreach (IBoard board in Boards)
                 {
                     if (winningMoves[i].Length == 2)
                     {
@@ -124,9 +124,8 @@ namespace lab_3_csd
                             board.PrintResult(result);
                         }
                     }
-                    else
+                    else if (board.GetCoordinate() == winningMoves[i].Remove(2, winningMoves[i].Length - 2))
                     {
-                        if (board.GetCoordinate() == winningMoves[i].Remove(2))
                         {
                             for (int j = 0; j < board.GetWinningCells().Count; j++)
                             {
@@ -135,9 +134,10 @@ namespace lab_3_csd
                             board.PrintResult(result);
                         }
                     }
-                   
+
                 }
-            }   
+            }
+            return;
         }
         public void Clear()
         {

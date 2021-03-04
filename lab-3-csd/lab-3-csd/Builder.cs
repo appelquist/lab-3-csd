@@ -113,7 +113,7 @@ namespace lab_3_csd
             {
                 return;
             }
-            //If the length of a move is 4 (NW.X), add the moves (NW) to the boards WinningCells
+            //If the length of a move is 4 (NW.X) set the winning cells of that board.
             if (moves.ElementAt(0).Length == 4)
             {
                 board.SetWinningCells(moves);
