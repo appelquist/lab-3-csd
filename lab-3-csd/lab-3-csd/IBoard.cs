@@ -17,6 +17,6 @@ namespace lab_3_csd
         void AddWinningCell(string coordinate);
         void SetWinningCells(List<string> winningMoves);
         List<string> GetWinningCells();
-        void PrintResult(List<string> winningMoves);
+        List<string> PrintResult(List<string> winningMoves);
     }
 }

@@ -45,35 +45,35 @@ namespace lab_3_csd
         {
             foreach (string move in winningMoves)
             {
-                string m = move.Remove(2, 2);
+                string m = move.Remove(2);
                 switch (m)
                 {
                     case "NW":
-                        WinningCells.Add(move);
+                        WinningCells.Add(m);
                         break;
                     case "NC":
-                        WinningCells.Add(move);
+                        WinningCells.Add(m);
                         break;
                     case "NE":
-                        WinningCells.Add(move);
+                        WinningCells.Add(m);
                         break;
                     case "CW":
-                        WinningCells.Add(move);
+                        WinningCells.Add(m);
                         break;
                     case "CC":
-                        WinningCells.Add(move);
+                        WinningCells.Add(m);
                         break;
                     case "CE":
-                        WinningCells.Add(move);
+                        WinningCells.Add(m);
                         break;
                     case "SW":
-                        WinningCells.Add(move);
+                        WinningCells.Add(m);
                         break;
                     case "SC":
-                        WinningCells.Add(move);
+                        WinningCells.Add(m);
                         break;
                     case "SE":
-                        WinningCells.Add(move);
+                        WinningCells.Add(m);
                         break;
                 }
             }
@@ -85,7 +85,7 @@ namespace lab_3_csd
                     {
                         for (int k = j + 1; k < WinningCells.Count; k++)
                         {
-                            List<string> threeMoves = new List<string>() { WinningCells[i].Remove(2), WinningCells[j].Remove(2), WinningCells[k].Remove(2) };
+                            List<string> threeMoves = new List<string>() { WinningCells[i], WinningCells[j], WinningCells[k] };
                             foreach (string[] pattern in WinningPatterns)
                             {
                                 if (threeMoves.Contains(pattern[0].ToString()) && threeMoves.Contains(pattern[1].ToString()) && threeMoves.Contains(pattern[2].ToString()))
@@ -164,7 +164,7 @@ namespace lab_3_csd
             WinningCells.Add(coordinate);
         }
 
-        public void PrintResult(List<string> winningMoves)
+        public List<string> PrintResult(List<string> winningMoves)
         {
             List<string> result = new List<string>();
             for (int i = 0; i < winningMoves.Count; i++)
@@ -177,7 +177,7 @@ namespace lab_3_csd
                     }
                 }
             }
-            return;
+            return result;
         }
 
         public List<string> GetWinningCells()

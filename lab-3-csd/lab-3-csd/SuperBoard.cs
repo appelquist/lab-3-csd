@@ -11,6 +11,7 @@ namespace lab_3_csd
         public string WinningPlayer { get; private set; }
         public List<IBoard> Boards { get; private set; } = new List<IBoard>();
         private List<string> WinningCells = new List<string>();
+        private List<string> WinningMoves = new List<string>();
 
         public SuperBoard(string coordinate)
         {
@@ -100,13 +101,40 @@ namespace lab_3_csd
                         break;
                 }               
             }
-            List<string> test = WinningCells;
-            if (WinningCells.Count > 3)
-            {
-                Console.WriteLine("true");
-            }
         }
-        public void PrintResult(List<string> winningMoves)
+        //public void PrintResult(List<string> winningMoves)
+        //{
+        //    List<string> result = new List<string>();
+        //    for (int i = 0; i < winningMoves.Count; i++)
+        //    {
+        //        foreach (IBoard board in Boards)
+        //        {
+        //            if (winningMoves[i].Length == 2)
+        //            {
+        //                if (board.GetCoordinate() == winningMoves[i])
+        //                {
+        //                    for (int j = 0; j < board.GetWinningCells().Count; j++)
+        //                    {
+        //                        result.Add(winningMoves[i] + "." + board.GetWinningCells()[j]);
+        //                    }
+        //                    board.PrintResult(result);
+        //                }
+        //            }
+        //            else if (board.GetCoordinate() == winningMoves[i].Remove(2, winningMoves[i].Length - 2))
+        //            {
+        //                {
+        //                    for (int j = 0; j < board.GetWinningCells().Count; j++)
+        //                    {
+        //                        result.Add(winningMoves[i] + "." + board.GetWinningCells()[j]);
+        //                    }
+        //                }
+        //            }
+
+        //        }
+        //    }
+        //    return;
+        //}
+        public List<string> PrintResult(List<string> winningMoves)
         {
             List<string> result = new List<string>();
             for (int i = 0; i < winningMoves.Count; i++)
@@ -120,24 +148,23 @@ namespace lab_3_csd
                             for (int j = 0; j < board.GetWinningCells().Count; j++)
                             {
                                 result.Add(winningMoves[i] + "." + board.GetWinningCells()[j]);
+                                result = board.PrintResult(result);
                             }
-                            board.PrintResult(result);
                         }
                     }
-                    else if (board.GetCoordinate() == winningMoves[i].Remove(2, winningMoves[i].Length - 2))
+                    else if (board.GetCoordinate() == winningMoves[i].Remove(2))
                     {
                         {
                             for (int j = 0; j < board.GetWinningCells().Count; j++)
                             {
-                                result.Add(winningMoves[i] + "." + board.GetWinningCells()[j]);
+                                result = board.PrintResult(result);
                             }
-                            board.PrintResult(result);
                         }
                     }
 
                 }
             }
-            return;
+            return result;
         }
         public void Clear()
         {
