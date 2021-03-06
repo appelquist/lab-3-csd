@@ -166,14 +166,18 @@ namespace lab_3_csd
 
         public List<string> PrintResult(List<string> winningMoves)
         {
+            if (winningMoves[0].Length > 2)
+            {
+                return winningMoves;
+            }
             List<string> result = new List<string>();
-            for (int i = 0; i < winningMoves.Count; i++)
+            for (int i = 0; i < WinningCells.Count; i++)
             {
                 foreach (Cell cell in Cells)
                 {
-                    if (cell.GetCoordinate() == winningMoves[i].Remove(2))
+                    if (cell.GetCoordinate() == WinningCells[i])
                     {
-                        result.Add(winningMoves[i] + "." + cell.GetCoordinate());
+                        result.Add(WinningCells[i] + "." + cell.GetCoordinate());
                     }
                 }
             }

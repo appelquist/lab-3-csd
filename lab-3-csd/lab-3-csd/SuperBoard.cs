@@ -137,31 +137,22 @@ namespace lab_3_csd
         public List<string> PrintResult(List<string> winningMoves)
         {
             List<string> result = new List<string>();
-            for (int i = 0; i < winningMoves.Count; i++)
+            for (int i = 0; i < WinningCells.Count; i++)
             {
                 foreach (IBoard board in Boards)
                 {
-                    if (winningMoves[i].Length == 2)
-                    {
-                        if (board.GetCoordinate() == winningMoves[i])
-                        {
-                            for (int j = 0; j < board.GetWinningCells().Count; j++)
-                            {
-                                result.Add(winningMoves[i] + "." + board.GetWinningCells()[j]);
-                                result = board.PrintResult(result);
-                            }
-                        }
-                    }
-                    else if (board.GetCoordinate() == winningMoves[i].Remove(2))
+                    if (board.GetCoordinate() == WinningCells[i])
                     {
                         {
                             for (int j = 0; j < board.GetWinningCells().Count; j++)
                             {
-                                result = board.PrintResult(result);
-                            }
+                                //Problem
+                                result.Add(WinningCells[i] + "." + board.GetWinningCells()[j]);                        
+                            }                          
                         }
+                        result = board.PrintResult(result);
                     }
-
+                    
                 }
             }
             return result;
