@@ -137,22 +137,27 @@ namespace lab_3_csd
         public List<string> PrintResult(List<string> winningMoves)
         {
             List<string> result = new List<string>();
-            for (int i = 0; i < WinningCells.Count; i++)
+            List<string> nextResultToCalculate = new List<string>();
+            for (int i = 0; i < winningMoves.Count; i++)
             {
                 foreach (IBoard board in Boards)
                 {
-                    if (board.GetCoordinate() == WinningCells[i])
+                    if (board.GetCoordinate() == winningMoves[i].Substring(0,2))
                     {
                         {
                             for (int j = 0; j < board.GetWinningCells().Count; j++)
                             {
                                 //Problem
-                                result.Add(WinningCells[i] + "." + board.GetWinningCells()[j]);                        
+                                result.Add(winningMoves[i] + "." + board.GetWinningCells()[j]);
+                                nextResultToCalculate.Add(winningMoves[i] + "." + board.GetWinningCells()[j]);
                             }                          
                         }
-                        result = board.PrintResult(result);
-                    }
-                    
+                        if (nextResultToCalculate.Count > 3)
+                        {
+                            nextResultToCalculate.RemoveAt(4);
+                        }
+                        result = board.PrintResult(nextResultToCalculate);
+                    }                   
                 }
             }
             return result;

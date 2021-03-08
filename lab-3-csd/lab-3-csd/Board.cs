@@ -171,13 +171,13 @@ namespace lab_3_csd
                 return winningMoves;
             }
             List<string> result = new List<string>();
-            for (int i = 0; i < WinningCells.Count; i++)
+            for (int i = 0; i < winningMoves.Count; i++)
             {
                 foreach (Cell cell in Cells)
                 {
-                    if (cell.GetCoordinate() == WinningCells[i])
+                    if (cell.GetCoordinate() == winningMoves[i])
                     {
-                        result.Add(WinningCells[i] + "." + cell.GetCoordinate());
+                        result.Add(winningMoves[i] + "." + cell.GetCoordinate());
                     }
                 }
             }
