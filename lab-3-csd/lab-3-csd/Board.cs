@@ -188,5 +188,13 @@ namespace lab_3_csd
         {
             return WinningCells;
         }
+
+        public void AddIfWinningMove(string move, string nextMove, List<string> moves)
+        {
+            if (WinningCells.Contains(nextMove.Substring(0, 2)) && WinningPlayer == move.Substring(move.Length - 1))
+            {
+                moves.Add(move);
+            }
+        }
     }
 }

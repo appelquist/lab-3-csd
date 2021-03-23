@@ -134,33 +134,69 @@ namespace lab_3_csd
         //    }
         //    return;
         //}
-        public List<string> PrintResult(List<string> winningMoves)
+        //public List<string> PrintResult(List<string> winningMoves)
+        //{
+        //    List<string> result = new List<string>();
+        //    List<string> nextResultToCalculate = new List<string>();
+        //    for (int i = 0; i < winningMoves.Count; i++)
+        //    {
+        //        foreach (IBoard board in Boards)
+        //        {
+        //            if (board.GetCoordinate() == winningMoves[i].Substring(0,2))
+        //            {
+        //                {
+        //                    for (int j = 0; j < board.GetWinningCells().Count; j++)
+        //                    {
+        //                        //Problem
+        //                        result.Add(winningMoves[i] + "." + board.GetWinningCells()[j]);
+        //                        nextResultToCalculate.Add(winningMoves[i] + "." + board.GetWinningCells()[j]);
+        //                    }                          
+        //                }
+        //                if (nextResultToCalculate.Count > 3)
+        //                {
+        //                    nextResultToCalculate.RemoveAt(4);
+        //                }
+        //                result = board.PrintResult(nextResultToCalculate);
+        //            }                   
+        //        }
+        //    }
+        //    return result;
+        //}
+
+        public List<string> PrintResult(List<string> moves)
         {
-            List<string> result = new List<string>();
-            List<string> nextResultToCalculate = new List<string>();
-            for (int i = 0; i < winningMoves.Count; i++)
+            List<string> winningPlayerMoves = new List<string>();
+            List<string> winningMoves = new List<string>();
+            foreach (string move in moves)
+            {
+                if (move.Substring(move.Length-1) == WinningPlayer)
+                {
+                    winningPlayerMoves.Add(move);
+                }
+            }
+            foreach (string move in winningPlayerMoves)
             {
                 foreach (IBoard board in Boards)
                 {
-                    if (board.GetCoordinate() == winningMoves[i].Substring(0,2))
+                    if (board.GetWinningCells().Contains(move.Substring(0, 2)) && board.GetWinningPlayer() == move.Substring(move.Length - 1) && board.GetCoordinate() == move.Substring(0, 2))
                     {
-                        {
-                            for (int j = 0; j < board.GetWinningCells().Count; j++)
-                            {
-                                //Problem
-                                result.Add(winningMoves[i] + "." + board.GetWinningCells()[j]);
-                                nextResultToCalculate.Add(winningMoves[i] + "." + board.GetWinningCells()[j]);
-                            }                          
-                        }
-                        if (nextResultToCalculate.Count > 3)
-                        {
-                            nextResultToCalculate.RemoveAt(4);
-                        }
-                        result = board.PrintResult(nextResultToCalculate);
-                    }                   
+                        string next = move.Substring(3);
+                        board.AddIfWinningMove(move, next, winningMoves);
+                    }                      
                 }
             }
-            return result;
+            return winningMoves;
+        }
+        public void AddIfWinningMove(string move, string nextMove, List<string> moves)
+        {
+            foreach (IBoard board in Boards)
+            {
+                if (board.GetWinningCells().Contains(nextMove.Substring(0, 2)) && board.GetWinningPlayer() == move.Substring(move.Length - 1) && board.GetCoordinate() == nextMove.Substring(0, 2))
+                {
+                    string next = nextMove.Substring(3);
+                    board.AddIfWinningMove(move, next, moves);
+                }
+            }
         }
         public void Clear()
         {
