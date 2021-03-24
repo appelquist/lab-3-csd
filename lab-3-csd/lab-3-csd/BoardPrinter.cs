@@ -6,28 +6,66 @@ namespace lab_3_csd
 {
     class BoardPrinter
     {
-        private List<string> result = new List<string>();
-        public BoardPrinter()
+        private IBoard Board;
+        private List<string> Moves;
+        public BoardPrinter(IBoard board, List<string> moves)
         {
+            Board = board;
+            Moves = moves;
         }
-        public void PrintBoard(IBoard board)
+
+        public void PrintTopLevelWinningMoves()
         {
-            List<string> winningCells = board.GetWinningCells();
-            for (int i = 0; i < winningCells.Count; i++)
+            List<string> moves = Board.GetWinningCells();
+            string result = "";
+            for (int i = 0; i < moves.Count; i++)
             {
-                foreach (IBoard b in board.GetCells())
+                if (i == moves.Count - 1)
                 {
-                    if (b.GetCoordinate() == winningCells[i])
-                    {
-                        for (int j = 0; j < b.GetWinningCells().Count; j++)
-                        {
-                            result.Add(winningCells[i] + "." + b.GetWinningCells()[j]);
-                        }
-                        PrintBoard(b);
-                    }
+                    result = result + moves[i];
+                }
+                else
+                {
+                    result = result + moves[i] + ", ";
                 }
             }
-            return;
+            Console.WriteLine(result);
+        }
+        public void PrintAllWinningMoves()
+        {
+            List<string> moves = Board.GetAllWinningCells(Moves);
+            string result = "";
+            for (int i = 0; i < moves.Count; i++)
+            {
+                if (i == moves.Count - 1)
+                {
+                    result = result + moves[i];
+                }
+                else
+                {
+                    result = result + moves[i] + ", ";
+                }
+            }
+            Console.WriteLine(result);
+        }
+
+        public void PrintPlayerWins()
+        {
+            List<string> playerWins = new List<string>();
+            string XWins = "";
+            string OWins = "";
+            if (Board.GetWinningPlayer() == "X")
+            {
+                XWins = "1";
+                OWins = "0";
+            }
+            else if (Board.GetWinningPlayer() == "O")
+            {
+                XWins = "0";
+                OWins = "1";
+            }
+            string layerWins = XWins;
+            string result = Board.GetPlayerWins("X", XWins);
         }
     }
 }

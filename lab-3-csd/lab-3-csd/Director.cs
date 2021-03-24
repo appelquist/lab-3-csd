@@ -24,7 +24,6 @@ namespace lab_3_csd
             Builder.MakeMoves(moves);
             Builder.SetWinners(WinningPatterns);
             Builder.SetWinningCells(Builder.GetBoard(), moves);
-            //Builder.SetWinningMoves(Builder.GetBoard());
         }
     }
 }

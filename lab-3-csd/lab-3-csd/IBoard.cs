@@ -19,5 +19,6 @@ namespace lab_3_csd
         List<string> GetWinningCells();
         List<string> GetAllWinningCells(List<string> winningMoves);
         void AddIfWinningMove(string move, string nextMove, List<string> winningMoves);
+        string GetPlayerWins(string player, string layerWins);
     }
 }

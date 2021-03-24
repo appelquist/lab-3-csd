@@ -155,7 +155,6 @@ namespace lab_3_csd
         {
             Boards.Add(b);
         }
-
         public void SetWinners(List<string[]> winningPatterns)
         {           
             foreach (IBoard board in Boards)
@@ -188,6 +187,51 @@ namespace lab_3_csd
                     SetWinningPlayer("O");
                 }
             }
+        }
+
+        public string GetPlayerWins(string player, string layerWins)
+        {
+            int wins = 0;
+            foreach(IBoard board in Boards)
+            {
+                if (board.GetWinningPlayer() == player)
+                {
+                    wins++;
+                }
+            }
+            layerWins = layerWins + "." + wins.ToString();
+            foreach (IBoard board in Boards)
+            {
+                board.GetPlayerWins(player, layerWins);
+            }
+            return layerWins;
+            //List<string> playerWins = new List<string>();
+            //if (WinningPlayer == "X")
+            //{
+            //    playerWins.Add("1");
+            //    playerWins.Add("0");
+            //}
+            //else if (WinningPlayer == "O")
+            //{
+            //    playerWins.Add("0");
+            //    playerWins.Add("1");
+            //}
+            //int XWins = 0;
+            //int OWins = 0;
+            //foreach (IBoard board in Boards)
+            //{
+            //    if (board.GetWinningPlayer() == "X")
+            //    {
+            //        XWins += 1;
+            //    }
+            //    else if (board.GetWinningPlayer() == "O")
+            //    {
+            //        OWins += 1;
+            //    }
+            //}
+            //playerWins[0] = playerWins[0] + "." + XWins.ToString();
+            //playerWins[1] = playerWins[1] + "." + OWins.ToString();
+            //return playerWins;
         }
     }
 }
