@@ -164,24 +164,28 @@ namespace lab_3_csd
             WinningCells.Add(coordinate);
         }
 
-        public List<string> PrintResult(List<string> winningMoves)
+        public List<string> GetAllWinningCells(List<string> moves)
         {
-            if (winningMoves[0].Length > 2)
+            List<string> winningPlayerMoves = new List<string>();
+            List<string> winningMoves = new List<string>();
+            foreach (string move in moves)
             {
-                return winningMoves;
+                if (move.Substring(move.Length - 1) == WinningPlayer)
+                {
+                    winningPlayerMoves.Add(move);
+                }
             }
-            List<string> result = new List<string>();
-            for (int i = 0; i < winningMoves.Count; i++)
+            foreach (string move in winningPlayerMoves)
             {
                 foreach (Cell cell in Cells)
                 {
-                    if (cell.GetCoordinate() == winningMoves[i])
+                    if (cell.PlayerOccupying == move.Substring(move.Length - 1) && cell.Coordinate == move.Substring(0, 2))
                     {
-                        result.Add(winningMoves[i] + "." + cell.GetCoordinate());
+                        winningMoves.Add(move.Substring(0, 2));
                     }
                 }
             }
-            return result;
+            return winningMoves;
         }
 
         public List<string> GetWinningCells()

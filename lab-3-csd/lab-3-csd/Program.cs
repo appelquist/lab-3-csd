@@ -30,7 +30,7 @@ namespace lab_3_csd
             BoardDirector.ConstructBoard(Moves, depth);
             IBoard game = BoardBuilder.GetBoard();
 
-            List<string> test = game.PrintResult(Moves);
+            List<string> test = game.GetAllWinningCells(Moves);
             return 0;
         }
     }

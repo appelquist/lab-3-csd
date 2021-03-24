@@ -163,7 +163,7 @@ namespace lab_3_csd
         //    return result;
         //}
 
-        public List<string> PrintResult(List<string> moves)
+        public List<string> GetAllWinningCells(List<string> moves)
         {
             List<string> winningPlayerMoves = new List<string>();
             List<string> winningMoves = new List<string>();
@@ -178,7 +178,7 @@ namespace lab_3_csd
             {
                 foreach (IBoard board in Boards)
                 {
-                    if (board.GetWinningCells().Contains(move.Substring(0, 2)) && board.GetWinningPlayer() == move.Substring(move.Length - 1) && board.GetCoordinate() == move.Substring(0, 2))
+                    if (board.GetWinningPlayer() == move.Substring(move.Length - 1) && board.GetCoordinate() == move.Substring(0, 2))
                     {
                         string next = move.Substring(3);
                         board.AddIfWinningMove(move, next, winningMoves);
@@ -191,7 +191,7 @@ namespace lab_3_csd
         {
             foreach (IBoard board in Boards)
             {
-                if (board.GetWinningCells().Contains(nextMove.Substring(0, 2)) && board.GetWinningPlayer() == move.Substring(move.Length - 1) && board.GetCoordinate() == nextMove.Substring(0, 2))
+                if (board.GetWinningPlayer() == move.Substring(move.Length - 1) && board.GetCoordinate() == nextMove.Substring(0, 2))
                 {
                     string next = nextMove.Substring(3);
                     board.AddIfWinningMove(move, next, moves);
