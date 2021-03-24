@@ -102,67 +102,6 @@ namespace lab_3_csd
                 }               
             }
         }
-        //public void PrintResult(List<string> winningMoves)
-        //{
-        //    List<string> result = new List<string>();
-        //    for (int i = 0; i < winningMoves.Count; i++)
-        //    {
-        //        foreach (IBoard board in Boards)
-        //        {
-        //            if (winningMoves[i].Length == 2)
-        //            {
-        //                if (board.GetCoordinate() == winningMoves[i])
-        //                {
-        //                    for (int j = 0; j < board.GetWinningCells().Count; j++)
-        //                    {
-        //                        result.Add(winningMoves[i] + "." + board.GetWinningCells()[j]);
-        //                    }
-        //                    board.PrintResult(result);
-        //                }
-        //            }
-        //            else if (board.GetCoordinate() == winningMoves[i].Remove(2, winningMoves[i].Length - 2))
-        //            {
-        //                {
-        //                    for (int j = 0; j < board.GetWinningCells().Count; j++)
-        //                    {
-        //                        result.Add(winningMoves[i] + "." + board.GetWinningCells()[j]);
-        //                    }
-        //                }
-        //            }
-
-        //        }
-        //    }
-        //    return;
-        //}
-        //public List<string> PrintResult(List<string> winningMoves)
-        //{
-        //    List<string> result = new List<string>();
-        //    List<string> nextResultToCalculate = new List<string>();
-        //    for (int i = 0; i < winningMoves.Count; i++)
-        //    {
-        //        foreach (IBoard board in Boards)
-        //        {
-        //            if (board.GetCoordinate() == winningMoves[i].Substring(0,2))
-        //            {
-        //                {
-        //                    for (int j = 0; j < board.GetWinningCells().Count; j++)
-        //                    {
-        //                        //Problem
-        //                        result.Add(winningMoves[i] + "." + board.GetWinningCells()[j]);
-        //                        nextResultToCalculate.Add(winningMoves[i] + "." + board.GetWinningCells()[j]);
-        //                    }                          
-        //                }
-        //                if (nextResultToCalculate.Count > 3)
-        //                {
-        //                    nextResultToCalculate.RemoveAt(4);
-        //                }
-        //                result = board.PrintResult(nextResultToCalculate);
-        //            }                   
-        //        }
-        //    }
-        //    return result;
-        //}
-
         public List<string> GetAllWinningCells(List<string> moves)
         {
             List<string> winningPlayerMoves = new List<string>();
