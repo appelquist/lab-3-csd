@@ -201,10 +201,6 @@ namespace lab_3_csd
                 moves.Add(move);
             }
         }
-        public string GetPlayerWins(string player, string layerWins)
-        {
-            return "";
-        }
         public List<IBoard> GetAllBoards(List<IBoard> allBoards)
         {
             return allBoards;

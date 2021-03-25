@@ -189,24 +189,6 @@ namespace lab_3_csd
                 }
             }
         }
-
-        public string GetPlayerWins(string player, string layerWins)
-        {
-            int wins = 0;
-            foreach(IBoard board in Boards)
-            {
-                if (board.GetWinningPlayer() == player)
-                {
-                    wins++;
-                }
-            }
-            layerWins = layerWins + "." + wins.ToString();
-            foreach (IBoard board in Boards)
-            {
-                board.GetPlayerWins(player, layerWins);
-            }
-            return layerWins;
-        }
         public List<IBoard> GetAllBoards(List<IBoard> allBoards)
         {
             foreach (IBoard board in Boards)

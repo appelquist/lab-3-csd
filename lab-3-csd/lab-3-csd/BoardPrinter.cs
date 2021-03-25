@@ -48,26 +48,7 @@ namespace lab_3_csd
             }
             Console.WriteLine(result);
         }
-
         public void PrintPlayerWins()
-        {
-            List<string> playerWins = new List<string>();
-            string XWins = "";
-            string OWins = "";
-            if (Board.GetWinningPlayer() == "X")
-            {
-                XWins = "1";
-                OWins = "0";
-            }
-            else if (Board.GetWinningPlayer() == "O")
-            {
-                XWins = "0";
-                OWins = "1";
-            }
-            string layerWins = XWins;
-            string result = Board.GetPlayerWins("X", XWins);
-        }
-        public void PrintPlayerWins2()
         {
             List<IBoard> allBoards = new List<IBoard>();
             List<int> layerWinsX = new List<int>();

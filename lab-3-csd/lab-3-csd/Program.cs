@@ -31,12 +31,9 @@ namespace lab_3_csd
             IBoard game = BoardBuilder.GetBoard();
 
             BoardPrinter Printer = new BoardPrinter(game, Moves);
-            Printer.PrintPlayerWins2();
-            Printer.PrintTopLevelWinningMoves();
-            Printer.PrintAllWinningMoves();
             Printer.PrintPlayerWins();
-            
-
+            Printer.PrintTopLevelWinningMoves();
+            Printer.PrintAllWinningMoves();                      
             return 0;
         }
     }
