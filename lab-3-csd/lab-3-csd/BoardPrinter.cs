@@ -13,8 +13,7 @@ namespace lab_3_csd
             Board = board;
             Moves = moves;
         }
-
-        public void PrintTopLevelWinningMoves()
+        public string GetTopLevelWinningMoves()
         {
             List<string> moves = Board.GetWinningCells();
             string result = "";
@@ -29,9 +28,13 @@ namespace lab_3_csd
                     result = result + moves[i] + ", ";
                 }
             }
-            Console.WriteLine(result);
+            return result;
         }
-        public void PrintAllWinningMoves()
+        public void PrintTopLevelWinningMoves()
+        {
+            Console.WriteLine(GetTopLevelWinningMoves());
+        }
+        public string GetAllWinningMoves()
         {
             List<string> moves = Board.GetAllWinningCells(Moves);
             string result = "";
@@ -47,9 +50,14 @@ namespace lab_3_csd
                     result = result + moves[i] + ", ";
                 }
             }
-            Console.WriteLine(result);
+            return result;
         }
-        public void PrintPlayerWins()
+        public void PrintAllWinningMoves()
+        {
+            Console.WriteLine(GetAllWinningMoves());
+        }
+
+        public string GetPlayerWins()
         {
             List<IBoard> allBoards = new List<IBoard>();
             List<int> layerWinsX = new List<int>();
@@ -89,7 +97,11 @@ namespace lab_3_csd
                 resultO = resultO + "." + layerWinsO[i].ToString();
             }
             string result = resultX + ", " + resultO;
-            Console.WriteLine(result);
+            return result;
+        }
+        public void PrintPlayerWins()
+        {
+            Console.WriteLine(GetPlayerWins());
         }
     }
 }
