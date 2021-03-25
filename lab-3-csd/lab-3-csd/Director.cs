@@ -4,7 +4,7 @@ using System.Text;
 
 namespace lab_3_csd
 {
-    class Director
+    public class Director
     {
         private List<string[]> WinningPatterns = new List<string[]>() { new string[] { "NW", "NC", "NE" }, new string[] { "CW", "CC", "CE" },
                                                                                              new string[] { "SW", "SC", "SE" }, new string[] { "NW", "CW", "SW" },

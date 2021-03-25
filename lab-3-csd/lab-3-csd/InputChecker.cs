@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace lab_3_csd
 {
-    class InputChecker
+    public class InputChecker
     {
         public InputChecker()
         {

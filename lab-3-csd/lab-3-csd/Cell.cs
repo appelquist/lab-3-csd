@@ -4,7 +4,7 @@ using System.Text;
 
 namespace lab_3_csd
 {
-    class Cell
+    public class Cell
     {
         public string Coordinate { get; private set; }
         public string PlayerOccupying { get; private set; }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace lab_3_csd
 {
-    class SuperBoard : IBoard
+    public class SuperBoard : IBoard
     {
         public string Coordinate { get; private set; }
         public string WinningPlayer { get; private set; }

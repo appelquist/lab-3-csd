@@ -5,7 +5,7 @@ using System.Text;
 
 namespace lab_3_csd
 {
-    class Builder : IBoardBuilder
+    public class Builder : IBoardBuilder
     {
         private IBoard Board;
         private string[] Coordinates = new string[] { "NW", "NC", "NE", "CW", "CC", "CE", "SW", "SC", "SE" };

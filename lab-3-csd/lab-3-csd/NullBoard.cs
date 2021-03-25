@@ -4,7 +4,7 @@ using System.Text;
 
 namespace lab_3_csd
 {
-    class NullBoard : IBoard
+    public class NullBoard : IBoard
 
     {
         public void AddBoard(IBoard b)

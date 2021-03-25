@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace lab_3_csd
 {
-    class Program
+    public class Program
     {
         static int Main(string[] args)
         {

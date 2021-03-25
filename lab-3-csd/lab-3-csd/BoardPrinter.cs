@@ -4,7 +4,7 @@ using System.Text;
 
 namespace lab_3_csd
 {
-    class BoardPrinter
+    public class BoardPrinter
     {
         private IBoard Board;
         private List<string> Moves;
@@ -37,6 +37,7 @@ namespace lab_3_csd
             string result = "";
             for (int i = 0; i < moves.Count; i++)
             {
+                moves[i] = moves[i].Substring(0, moves[i].Length - 2);
                 if (i == moves.Count - 1)
                 {
                     result = result + moves[i];

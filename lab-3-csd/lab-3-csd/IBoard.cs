@@ -4,7 +4,7 @@ using System.Text;
 
 namespace lab_3_csd
 {
-    interface IBoard
+    public interface IBoard
     {
         void AddBoard(IBoard b);
         void SetCoordinate(string coordinate);

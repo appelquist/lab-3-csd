@@ -5,7 +5,7 @@ using System.Text;
 
 namespace lab_3_csd
 {
-    class Board : IBoard
+    public class Board : IBoard
     {
         public string Coordinate { get; private set; }
         public List<Cell> Cells = new List<Cell>() { new Cell("NW"), new Cell("NC"), new Cell("NE"), new Cell("CW"), new Cell("CC"), new Cell("CE"), new Cell("SW"), new Cell("SC"), new Cell("SE") };
