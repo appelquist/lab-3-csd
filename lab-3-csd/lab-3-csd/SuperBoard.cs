@@ -9,6 +9,7 @@ namespace lab_3_csd
     {
         public string Coordinate { get; private set; }
         public string WinningPlayer { get; private set; }
+        public int Layer { get; private set; }
         public List<IBoard> Boards { get; private set; } = new List<IBoard>();
         private List<string> WinningCells = new List<string>();
         private List<string> WinningMoves = new List<string>();
@@ -205,33 +206,33 @@ namespace lab_3_csd
                 board.GetPlayerWins(player, layerWins);
             }
             return layerWins;
-            //List<string> playerWins = new List<string>();
-            //if (WinningPlayer == "X")
-            //{
-            //    playerWins.Add("1");
-            //    playerWins.Add("0");
-            //}
-            //else if (WinningPlayer == "O")
-            //{
-            //    playerWins.Add("0");
-            //    playerWins.Add("1");
-            //}
-            //int XWins = 0;
-            //int OWins = 0;
-            //foreach (IBoard board in Boards)
-            //{
-            //    if (board.GetWinningPlayer() == "X")
-            //    {
-            //        XWins += 1;
-            //    }
-            //    else if (board.GetWinningPlayer() == "O")
-            //    {
-            //        OWins += 1;
-            //    }
-            //}
-            //playerWins[0] = playerWins[0] + "." + XWins.ToString();
-            //playerWins[1] = playerWins[1] + "." + OWins.ToString();
-            //return playerWins;
+        }
+        public List<IBoard> GetAllBoards(List<IBoard> allBoards)
+        {
+            foreach (IBoard board in Boards)
+            {
+                allBoards.Add(board);
+                board.GetAllBoards(allBoards);
+            }
+            return allBoards;
+        }
+        public void SetLayers(int layer)
+        {
+            SetLayer(layer);
+            foreach (IBoard board in Boards)
+            {
+                board.SetLayers(layer - 1);
+            }
+        }
+
+        public void SetLayer(int layer)
+        {
+            Layer = layer;
+        }
+
+        public int GetLayer()
+        {
+            return Layer;
         }
     }
 }

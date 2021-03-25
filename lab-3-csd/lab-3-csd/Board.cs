@@ -9,6 +9,7 @@ namespace lab_3_csd
     {
         public string Coordinate { get; private set; }
         public List<Cell> Cells = new List<Cell>() { new Cell("NW"), new Cell("NC"), new Cell("NE"), new Cell("CW"), new Cell("CC"), new Cell("CE"), new Cell("SW"), new Cell("SC"), new Cell("SE") };
+        public int Layer { get; private set; }
         public List<string> WinningCells { get; private set; } = new List<string>();
         public string WinningPlayer { get; private set; }
         private List<string[]> WinningPatterns = new List<string[]>() { new string[] { "NW", "NC", "NE" }, new string[] { "CW", "CC", "CE" },
@@ -203,6 +204,24 @@ namespace lab_3_csd
         public string GetPlayerWins(string player, string layerWins)
         {
             return "";
+        }
+        public List<IBoard> GetAllBoards(List<IBoard> allBoards)
+        {
+            return allBoards;
+        }
+        public void SetLayers(int layer)
+        {
+            Layer = layer;
+        }
+
+        public void SetLayer(int layer)
+        {
+            Layer = layer;
+        }
+
+        public int GetLayer()
+        {
+            return Layer;
         }
     }
 }

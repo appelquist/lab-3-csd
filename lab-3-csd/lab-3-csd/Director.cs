@@ -21,6 +21,7 @@ namespace lab_3_csd
         {
             Builder.SetCoordinate("root");
             Builder.GenerateEmptyBoard(depth);
+            Builder.SetLayers(depth);
             Builder.MakeMoves(moves);
             Builder.SetWinners(WinningPatterns);
             Builder.SetWinningCells(Builder.GetBoard(), moves);

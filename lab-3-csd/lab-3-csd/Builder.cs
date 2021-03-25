@@ -52,6 +52,15 @@ namespace lab_3_csd
             }
         }
 
+        public void SetLayers(int depth)
+        {
+            Board.SetLayer(depth + 1);
+            foreach (IBoard board in Board.GetCells())
+            {
+                board.SetLayers(depth);
+            }
+        }
+
         public void MakeMoves(List<string> moves)
         {
             //Base case - if all moves have been gone through, return
