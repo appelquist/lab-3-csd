@@ -16,6 +16,9 @@ namespace lab_3_csd
         {
             Builder = builder;
         }
+        public Director()
+        {
+        }
 
         public void ConstructBoard(List<string> moves, int depth)
         {
