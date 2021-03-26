@@ -54,11 +54,18 @@ namespace lab_3_csd
 
         public void SetLayers(int depth)
         {
-            Board.SetLayer(depth + 1);
-            foreach (IBoard board in Board.GetCells())
+            if (depth == 0)
             {
-                board.SetLayers(depth);
+                Board.SetLayer(1);
             }
+            else
+            {
+                Board.SetLayer(depth + 1);
+                foreach (IBoard board in Board.GetCells())
+                {
+                    board.SetLayers(depth);
+                }
+            }        
         }
 
         public void MakeMoves(List<string> moves)
@@ -71,7 +78,7 @@ namespace lab_3_csd
             string move = moves.First();
             foreach (IBoard b in this.Board.GetCells())
             {
-                b.MakeMove(move);
+                 b.MakeMove(move);
             }
 
             //Remove firstMove from moves and continue

@@ -16,14 +16,26 @@ namespace lab_3_csd
         {
             for (int i = 0; i < moves.Length; i++)
             {
-                string[] splits = moves[i].Split(".");
-                for (int j = 0; j < splits.Length; j++)
+                if (!moves[0].Contains("."))
                 {
-                    if (splits[j] != "NW" && splits[j] != "NC" && splits[j] != "NE" && splits[j] != "CW" && splits[j] != "CC" && splits[j] != "CE" && splits[j] != "SW" && splits[j] != "SC" && splits[j] != "SE")
+
+                    if (moves[i] != "NW" && moves[i] != "NC" && moves[i] != "NE" && moves[i] != "CW" && moves[i] != "CC" && moves[i] != "CE" && moves[i] != "SW" && moves[i] != "SC" && moves[i] != "SE")
                     {
                         return false;
                     }
                 }
+                else
+                {
+                    string[] splits = moves[i].Split(".");
+                    for (int j = 0; j < splits.Length; j++)
+                    {
+                        if (splits[j] != "NW" && splits[j] != "NC" && splits[j] != "NE" && splits[j] != "CW" && splits[j] != "CC" && splits[j] != "CE" && splits[j] != "SW" && splits[j] != "SC" && splits[j] != "SE")
+                        {
+                            return false;
+                        }
+                    }
+                }
+                
             }
             return true;
         }

@@ -67,7 +67,7 @@ namespace lab_3_csd
             catch
             {
                 Console.WriteLine("Failed when building board, check input");
-            }                                             
+            }
             return 0;
         }
     }

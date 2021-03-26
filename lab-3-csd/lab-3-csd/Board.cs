@@ -28,8 +28,15 @@ namespace lab_3_csd
         public void MakeMove(string move)
         {
             string coordinate = move.Remove(2, move.Length - 2);
-            move = move.Remove(0, 3);
-            if (coordinate == this.Coordinate || "root" == this.Coordinate)
+            if (coordinate == this.Coordinate)
+            {
+                move = move.Remove(0, 3);
+                foreach (Cell cell in Cells)
+                {
+                    cell.MakeMove(move);
+                }
+            }
+            else if ("root" == this.Coordinate)
             {
                 foreach (Cell cell in Cells)
                 {

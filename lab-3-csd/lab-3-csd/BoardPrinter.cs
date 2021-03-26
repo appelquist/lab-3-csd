@@ -40,15 +40,30 @@ namespace lab_3_csd
             string result = "";
             for (int i = 0; i < moves.Count; i++)
             {
-                moves[i] = moves[i].Substring(0, moves[i].Length - 2);
-                if (i == moves.Count - 1)
+                if (moves[i].Length > 2)
                 {
-                    result = result + moves[i];
+                    moves[i] = moves[i].Substring(0, moves[i].Length - 2);
+                    if (i == moves.Count - 1)
+                    {
+                        result = result + moves[i];
+                    }
+                    else
+                    {
+                        result = result + moves[i] + ", ";
+                    }
                 }
                 else
                 {
-                    result = result + moves[i] + ", ";
+                    if (i == moves.Count - 1)
+                    {
+                        result = result + moves[i];
+                    }
+                    else
+                    {
+                        result = result + moves[i] + ", ";
+                    }
                 }
+                
             }
             return result;
         }

@@ -22,8 +22,9 @@ namespace lab_3_csd
 
         public void ConstructBoard(List<string> moves, int depth)
         {
-            Builder.SetCoordinate("root");
+            
             Builder.GenerateEmptyBoard(depth);
+            Builder.SetCoordinate("root");
             Builder.SetLayers(depth);
             Builder.MakeMoves(moves);
             Builder.SetWinners(WinningPatterns);
